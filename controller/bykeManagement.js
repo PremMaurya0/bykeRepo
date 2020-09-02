@@ -8,12 +8,13 @@ var momentzone = require('moment-timezone');
   momentzone.tz.setDefault("Asia/Dubai");
 
   var bykeManagement = {
-      
+
     updatebykedata:function(obj,callback){
         if(obj.deviceKey=="" || obj.deviceKey==undefined){
             callback('Device Key is must!',null);
         }else{
             if(obj.deviceKey=="Prem_Maurya"){
+                console.log(obj,"=============");
                 callback(obj,null);
               //  var per=obj.data;
                // var number=obj.mobile;

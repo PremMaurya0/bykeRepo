@@ -54,6 +54,6 @@ app.use('/api', byke);
 
 http.listen(3001,(err)=>{
     if(err) throw err;
-      console.log('Listing To port http://localhost:3002');
+      console.log('Listing To port http://localhost:3001');
 })
   

@@ -51,6 +51,7 @@ var payload = {
                        datadate:req.query.bykedate,
                        deviceKey:deviceKey.get('deviceKey')
                    }
+                   console.log(obj);
                    callback(obj,null);
                }
            }else{
