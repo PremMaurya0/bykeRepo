@@ -16,30 +16,30 @@ var momentzone = require('moment-timezone');
             if(obj.deviceKey=="Prem_Maurya"){
                 console.log(obj,"=============");
                 callback(obj,null);
-              //  var per=obj.data;
-               // var number=obj.mobile;
-                // var sqlquery = "select gsm_moblie_number from dustbins WHERE gsm_moblie_number = ?";
-                // db.query(sqlquery,[number], function (error,results) {
-                //     if (error) {
-                //     callback(error,null);
-                //     }
-                //     else{                 
-                //         if(results.length){
-                //             var sqlquery = "UPDATE dustbins set data_percentage=? WHERE gsm_moblie_number = ?";
-                //                  db.query(sqlquery,[per,number], function (error,result) {
-                //                     if (error) {
-                //                      callback(error,null);
-                //                      }
-                //                      else{ 
-                //                       callback('update record!',null);
-                //                     }
-                //              });
-                //         }
-                //         else{
-                //             callback('Mobile Number is not registered!',null);
-                //         }
-                //     }
-                // });
+               
+               var number=obj.datamobile;
+                var sqlquery = "select contact_no from customers WHERE contact_no = ?";
+                db.query(sqlquery,[number], function (error,results) {
+                    if (error) {
+                    callback(error,null);
+                    }
+                    else{                 
+                        if(results.length){
+                            var sqlquery = "UPDATE customers set latitude=? , longitude =?, updated_at =?  WHERE contact_no = ?";
+                                 db.query(sqlquery,[obj.datalatitute,obj.datalogitute,obj.datatime,number], function (error,result) {
+                                    if (error) {
+                                     callback(error,null);
+                                     }
+                                     else{ 
+                                      callback('update record!',null);
+                                    }
+                             });
+                        }
+                        else{
+                            callback('Mobile Number is not registered!',null);
+                        }
+                    }
+                });
 
             }else{
                 callback('Device Key not Matched!',null);
