@@ -22,7 +22,7 @@ module.exports=function(deviceKey,io){
         }else{
             bykeManagementCtrl.updatebykedata(requestDevice,result => { 
                 res.send(result);
-                console.log("API in Here 2")
+                //console.log("API in Here 2")
             });
         }
     });

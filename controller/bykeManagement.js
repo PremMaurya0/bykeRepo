@@ -14,8 +14,6 @@ var momentzone = require('moment-timezone');
             callback('Device Key is must!',null);
         }else{
             if(obj.deviceKey=="Prem_Maurya"){
-                console.log(obj,"=============");
-                callback(obj,null);
                
                var number=obj.datamobile;
                 var sqlquery = "select contact_no from customers WHERE contact_no = ?";
