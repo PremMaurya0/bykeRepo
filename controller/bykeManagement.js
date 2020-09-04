@@ -10,11 +10,12 @@ var momentzone = require('moment-timezone');
   var bykeManagement = {
 
     updatebykedata:function(obj,callback){
+        
         if(obj.deviceKey=="" || obj.deviceKey==undefined){
             callback('Device Key is must!',null);
         }else{
             if(obj.deviceKey=="Prem_Maurya"){
-               
+               //console.log(obj.datamobile);
                var number=obj.datamobile;
                 var sqlquery = "select contact_no from customers WHERE contact_no = ?";
                 db.query(sqlquery,[number], function (error,results) {
@@ -23,7 +24,7 @@ var momentzone = require('moment-timezone');
                     }
                     else{                 
                         if(results.length){
-                            var sqlquery = "UPDATE customers set latitude=? , longitude =?, updated_at =?  WHERE contact_no = ?";
+                            var sqlquery = "UPDATE customers set latitude=? , longitude =?, cur_time =?  WHERE contact_no = ?";
                                  db.query(sqlquery,[obj.datalatitute,obj.datalogitute,obj.datatime,number], function (error,result) {
                                     if (error) {
                                      callback(error,null);

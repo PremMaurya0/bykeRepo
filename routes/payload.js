@@ -1,22 +1,31 @@
 var payload = {
     google_payloaddataByPrem :function(deviceKey,req,callback){
+        console.log(req.query);
        if(req.query!=undefined){
-           if(req.query.bykelat==undefined &&req.query.bykelong==undefined && req.query.bykemobile==undefined && req.query.byketime==undefined&& req.query.bykedate==undefined){
-               callback("400",null);
+           if(req.query.bykelat==undefined && req.query.bykelong==undefined && req.query.bykemobile==undefined && req.query.byketime==undefined&& req.query.bykedate==undefined){
+            //console.log("1")
+            callback("400",null);
+               
            }
            else if(req.query.bykelat==undefined ){
+          //  console.log("11")
                callback("400",null);
+
            }
            else if(req.query.bykelong==undefined ){
+           // console.log("111")
             callback("400",null);
             }
            else if(req.query.bykemobile==undefined ){
+            //console.log("1111")
                callback("400",null);
            }
            else if(req.query.byketime==undefined ){
+            //console.log("12")
             callback("400",null);
         }
         else if(req.query.bykedate==undefined ){
+           // console.log("13")
             callback("400",null);
         }
            else{      
