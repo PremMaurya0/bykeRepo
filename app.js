@@ -36,18 +36,17 @@ app.get('/', function(req, res) {
 });
 
 app.use('/api', byke);
+app.get('/', function(req, res) {
+  res.sendfile('index.html');
+});
+io.on('connection', function(socket) {
+  console.log('A user connected');
+      //Whenever someone disconnects this piece of code executed
+  socket.on('disconnect', function () {
+     console.log('A user disconnected');
+  });
 
-// io.on('connection', function(socket) {
-//   console.log('A user connected');
-//     // socket.on("dustbinpickup",(page,pagenumber,id)=>{
-//     //     getAllData(page,pagenumber,socket,id);            
-//     // });
-//   //Whenever someone disconnects this piece of code executed
-//   socket.on('disconnect', function () {
-//      console.log('A user disconnected');
-//   });
-
-// });
+});
 
 
 

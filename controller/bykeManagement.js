@@ -15,7 +15,7 @@ var momentzone = require('moment-timezone');
             callback('Device Key is must!',null);
         }else{
             if(obj.deviceKey=="Prem_Maurya"){
-               //console.log(obj.datamobile);
+            console.log(obj);
                var number=obj.datamobile;
                 var sqlquery = "select contact_no from customers WHERE contact_no = ?";
                 db.query(sqlquery,[number], function (error,results) {
@@ -45,7 +45,98 @@ var momentzone = require('moment-timezone');
             } 
         }
      
+     },
+     getStatus:function(gsm_mobile,callback){
+
+        var number=gsm_mobile;
+        var sqlquery = "select contact_no from customers WHERE contact_no = ?";
+        db.query(sqlquery,[number], function (error,results) {
+            if (error) {
+            callback(error,null);
+            }
+            else{
+                if(results.length){  
+
+                    var sqlquery = "select contact_no,status_command from customers WHERE contact_no = ?";
+                    db.query(sqlquery,[number], function (error,results) {
+                        if (error) {
+                        callback(error,null);
+                        }
+                        else{ 
+                            callback(results,null);
+                        }
+                    });
+                 }
+                else{
+                    callback("0",null);
+                }
+            }
+    });
+    
      }
+     , updateStatus:function(gsmmobile,bikestatus,callback){
+
+        var number=gsmmobile;
+        var statusObj=bikestatus;
+        var sqlquery = "select contact_no from customers WHERE contact_no = ?";
+        db.query(sqlquery,[number], function (error,results) {
+            if (error) {
+            callback(error,null);
+            }
+            else{
+                if(results.length){  
+
+        var sqlquery = "update customers set status_command=? WHERE contact_no = ?";
+        db.query(sqlquery,[statusObj,number], function (error,results) {
+            if (error) {
+            callback(error,null);
+            }
+            else{ 
+                callback("Update Data",null);
+            }
+        });
+    }
+    else{
+        callback("0",null);
+        }
+        }
+    });
+    }, 
+    selectAllData:function(callback){
+
+        var sqlquery = "select * from customers";
+        db.query(sqlquery, function (error,results) {
+            if (error) {
+            callback(error,null);
+            }
+            else{ 
+                callback(results,null);
+            }
+        });
+    },
+    getDetails:function(gsm_mobile,callback){
+
+                    var number=gsm_mobile;
+       
+                    var sqlquery = "select * from customers WHERE contact_no = ?";
+                    db.query(sqlquery,[number], function (error,results) {
+                        if (error) {
+                        callback(error,null);
+                        }
+                        else{ 
+                            if(results.length>0){
+                                callback(results,null);
+                            }else{
+                                callback("0",null);
+                            }
+                            
+                        }
+                    });
+                
+         
+     }
+
+
   }
 
   module.exports = bykeManagement;
