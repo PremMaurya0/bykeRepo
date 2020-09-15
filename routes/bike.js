@@ -85,8 +85,9 @@ module.exports=function(deviceKey,io){
     if(req.query.gsm_mobile==undefined){
       res.json({error:true,message:"gsm_mobile is undefined!!"});
     }else{
+     // console.log(req.query.gsm_mobile);
       bykeManagementCtrl.getDetails(req.query.gsm_mobile, result=>{
-          
+          console.log(result);
           if(result=="0"){
               res.json({message:"number is not found!"});
           }else{

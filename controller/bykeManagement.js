@@ -15,7 +15,7 @@ var momentzone = require('moment-timezone');
             callback('Device Key is must!',null);
         }else{
             if(obj.deviceKey=="Prem_Maurya"){
-            console.log(obj);
+          //  console.log(obj);
                var number=obj.datamobile;
                 var sqlquery = "select contact_no from customers WHERE contact_no = ?";
                 db.query(sqlquery,[number], function (error,results) {
@@ -117,13 +117,14 @@ var momentzone = require('moment-timezone');
     getDetails:function(gsm_mobile,callback){
 
                     var number=gsm_mobile;
-       
+       //console.log(gsm_mobile);
                     var sqlquery = "select * from customers WHERE contact_no = ?";
                     db.query(sqlquery,[number], function (error,results) {
                         if (error) {
                         callback(error,null);
                         }
                         else{ 
+                            //console.log(results);
                             if(results.length>0){
                                 callback(results,null);
                             }else{
